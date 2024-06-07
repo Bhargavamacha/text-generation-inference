@@ -49,12 +49,11 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4.4.1
       - name: Build and push Docker image
-        id: build-and-push
+        id: build
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ${{ matrix.dockerfile }}
-          push: true
           platforms: 'linux/amd64'
           build-args: |
             GIT_SHA=${{ env.GITHUB_SHA }}
